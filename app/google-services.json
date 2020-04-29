@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1089336777457",
+    "firebase_url": "https://fir-integration-8ccd2.firebaseio.com",
+    "project_id": "fir-integration-8ccd2",
+    "storage_bucket": "fir-integration-8ccd2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089336777457:android:eb45ab5bafd1d4cfad6750",
+        "android_client_info": {
+          "package_name": "com.opet.firebaseintegration"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1089336777457-e0nfpppfpmhctd3vtaeeqnraiabnkq2b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcoxlta22M7VXCgLszQIBWKwcf3wXWI20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1089336777457-e0nfpppfpmhctd3vtaeeqnraiabnkq2b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
