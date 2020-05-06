@@ -39,4 +39,19 @@ public class DashActivity extends AppCompatActivity {
         startActivity(inicio);
         finish();
     }
+
+    public void registrarDadosUsuario(View view) {
+        Intent intent = new Intent(DashActivity.this, CadOneActivity.class);
+        startActivity(intent);
+    }
+
+    public void registrarDadosVenda(View view) {
+        Intent intent = new Intent(DashActivity.this, CadTwoActivity.class);
+        startActivity(intent);
+    }
+
+    public void registrarDadosTarefa(View view) {
+        Intent intent = new Intent(DashActivity.this, CadTaskActivity.class);
+        startActivity(intent);
+    }
 }

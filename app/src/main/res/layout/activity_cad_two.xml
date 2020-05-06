@@ -5,35 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DashActivity">
+    tools:context=".CadTwoActivity">
 
-    <TextView
-        android:id="@+id/textWelcome"
+    <EditText
+        android:id="@+id/editTitulo"
+        android:hint="Digite o titulo"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/editDescricao"
+        android:hint="Digite a descricao"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/editValor"
+        android:hint="Digite o valor"
+        android:inputType="numberDecimal"
         android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
-        android:onClick="registrarDadosUsuario"
-        android:text="Dados do usuário"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
         android:onClick="registrarDadosVenda"
-        android:text="Dados da venda"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:onClick="registrarDadosTarefa"
-        android:text="Dados tarefa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:onClick="sair"
-        android:text="SAIR"
+        android:text="Salvar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

@@ -1,8 +1,6 @@
 package com.opet.firebaseintegration;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -12,16 +10,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,7 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private String TAG = MainActivity.class.getSimpleName();
 
@@ -48,8 +43,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        findViewById(R.id.sign_in_button).setOnClickListener(this);
+
         // [START]=================== Google Auth ===================
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.server_client_id))
                 .requestEmail()
                 .build();
 
@@ -60,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
         initUi();
     }
+
+
 
     @Override
     protected void onStart() {
@@ -114,15 +114,8 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    public void signInWithGoogle(View view) {
-        Log.d(TAG, "signInWithGoogle");
-        Intent intent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(intent, RC_SIGN_IN);
-        finish();
-    }
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN){
@@ -134,9 +127,10 @@ public class MainActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> googleSignInAccountTask) {
         try {
             GoogleSignInAccount account = googleSignInAccountTask.getResult(ApiException.class);
+            assert account != null;
             firebaseAuthWithGoogle(account);
         } catch (ApiException e) {
-            Log.w(TAG, "SignIn result => handleSignInResult: " + e.getStatusCode());
+            Log.wtf(TAG, "SignIn result => handleSignInResult: " + e.getStatusCode());
             updateUI(null);
         }
     }
@@ -144,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
         Log.d(TAG, "firebaseAuthWithGoogle: " + account.getId());
 
-        showProgressDialog("Autenticando...");
+        showProgressDialog();
 
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -162,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void showProgressDialog(String s) {
+    private void showProgressDialog() {
         if (progressDialog == null) {
             progressDialog = new ProgressDialog(this);
             progressDialog.setIndeterminate(true);
@@ -178,7 +172,18 @@ public class MainActivity extends AppCompatActivity {
             };
             progressDialog.setOnKeyListener(keyListener);
         }
-        progressDialog.setMessage(s);
+        progressDialog.setMessage("Autenticando...");
         progressDialog.show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.sign_in_button:
+                Log.d(TAG, "signInWithGoogle");
+                Intent intent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(intent, RC_SIGN_IN);
+                break;
+        }
     }
 }

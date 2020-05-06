@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Firebase Integration</string>
+    <string name="server_client_id">1089336777457-kr381n4jpu2hcvljj4tnp48gl80lrc0l.apps.googleusercontent.com</string>
+    <string-array name="categoryArray">
+        <item>Java</item>
+        <item>Python</item>
+        <item>C#</item>
+        <item>JavaScript</item>
+    </string-array>
 </resources>

@@ -5,35 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DashActivity">
+    tools:context=".CadOneActivity">
 
-    <TextView
-        android:id="@+id/textWelcome"
+    <EditText
+        android:id="@+id/editNome"
         android:textSize="20sp"
+        android:hint="Digite seu nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/editEndereco"
+        android:textSize="20sp"
+        android:hint="Digite seu endereço"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/editTelefone"
+        android:textSize="20sp"
+        android:hint="Digite seu telefone"
+        android:inputType="phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
-        android:onClick="registrarDadosUsuario"
-        android:text="Dados do usuário"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:onClick="registrarDadosVenda"
-        android:text="Dados da venda"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:onClick="registrarDadosTarefa"
-        android:text="Dados tarefa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:onClick="sair"
-        android:text="SAIR"
+        android:onClick="salvarNoFirebase"
+        android:text="Salvar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
