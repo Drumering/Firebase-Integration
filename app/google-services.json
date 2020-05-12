@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "1089336777457-sph3e5dstbqc2a2b3n73lbukto1lrgir.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.opet.firebaseintegration",
+            "certificate_hash": "4e9d077efe9c46ded98a941e0e69f35e157cf195"
+          }
+        },
+        {
+          "client_id": "1089336777457-6h4rl6gk0fkpa7e71n7i9htsf2kv6i4u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.opet.firebaseintegration",
+            "certificate_hash": "af23d11a5e1e6831f52eab301c1bf1bc6ca6f9f4"
+          }
+        },
+        {
           "client_id": "1089336777457-e0nfpppfpmhctd3vtaeeqnraiabnkq2b.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -28,7 +44,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1089336777457-e0nfpppfpmhctd3vtaeeqnraiabnkq2b.apps.googleusercontent.com",
+              "client_id": "1089336777457-kr381n4jpu2hcvljj4tnp48gl80lrc0l.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

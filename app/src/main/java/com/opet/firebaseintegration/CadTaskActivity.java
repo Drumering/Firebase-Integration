@@ -78,6 +78,8 @@ public class CadTaskActivity extends AppCompatActivity {
                 Toast.makeText(CadTaskActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         });
+
+        finish();
     }
 
     private void getCreationDate() {
