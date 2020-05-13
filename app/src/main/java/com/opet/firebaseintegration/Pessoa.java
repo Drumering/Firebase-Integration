@@ -13,13 +13,11 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Pessoa{" +
-                "nome='" + nome + '\'' +
-                ", qtde_filhos=" + qtde_filhos +
-                ", salario=" + salario +
-                ", ativo=" + ativo +
-                ", pets=" + pets +
-                ", dt_aniversario=" + dt_aniversario +
-                '}';
+        return "nome: " + nome + '\n' +
+                "qtde_filhos: " + qtde_filhos + '\n' +
+                "salario: " + salario + '\n' +
+                "ativo: " + ativo + '\n' +
+                "pets: " + pets + '\n' +
+                "dt_aniversario: " + dt_aniversario + '\n' + '\n';
     }
 }

@@ -37,7 +37,7 @@ class PopulateUtil {
         pessoa.qtde_filhos = 0;
         pessoa.salario = 1900.14;
         pessoa.ativo = true;
-        pessoa.pets = null;
+        pessoa.pets = Arrays.asList("Pingo");
         pessoa.dt_aniversario = new GregorianCalendar(1995, Calendar.DECEMBER, 30).getTime();
 
         pessoas.add(pessoa);

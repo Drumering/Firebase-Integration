@@ -30,7 +30,6 @@ public class DashActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private TextView textWelcome;
     private FirebaseFirestore db;
-    private TextView textResultado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +38,6 @@ public class DashActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         textWelcome = findViewById(R.id.textWelcome);
-        textResultado = findViewById(R.id.textResultado);
     }
 
     @Override
@@ -85,32 +83,7 @@ public class DashActivity extends AppCompatActivity {
     }
 
     public void carregarDados(View view) {
-
-        CollectionReference refPessoa = db.collection("exemplo");
-//        refPessoa.whereEqualTo("ativo", true)
-        refPessoa.whereGreaterThan("qtde_filhos", 0)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            String resultado = "";
-                            List<Pessoa> pessoaList = new ArrayList<>();
-
-                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
-                                resultado += "ID: " + documentSnapshot.getId() + "\n" +
-                                        documentSnapshot.getData().toString() + "\n";
-
-                                pessoaList.add(documentSnapshot.toObject(Pessoa.class));
-                            }
-                            resultado = "";
-                            for(Pessoa p : pessoaList){
-                                resultado += p.toString() + "\n";
-
-                            }
-                            textResultado.setText(resultado);
-                        }
-                    }
-                });
+        Intent intent = new Intent(DashActivity.this, ShowDataActivity.class);
+        startActivity(intent);
     }
 }
