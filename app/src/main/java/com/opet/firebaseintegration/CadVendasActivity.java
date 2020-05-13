@@ -13,7 +13,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class CadTwoActivity extends AppCompatActivity {
+public class CadVendasActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private EditText editTitulo, editDescricao, editValor;
@@ -21,7 +21,7 @@ public class CadTwoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cad_two);
+        setContentView(R.layout.activity_cad_vendas);
 
         editTitulo = findViewById(R.id.editTitulo);
         editDescricao = findViewById(R.id.editDescricao);
@@ -45,13 +45,13 @@ public class CadTwoActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 String message = "Venda cadastrada com sucesso";
-                Toast.makeText(CadTwoActivity.this, message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CadVendasActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 String message = "Erro ao cadastrar venda";
-                Toast.makeText(CadTwoActivity.this, message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CadVendasActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }

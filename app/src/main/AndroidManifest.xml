@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".CadTaskActivity"></activity>
-        <activity android:name=".CadTwoActivity" />
+        <activity android:name=".CadVendasActivity" />
         <activity android:name=".CadOneActivity" />
         <activity android:name=".CreateUserActivity" />
         <activity android:name=".DashActivity" />
