@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.opet.firebaseintegration.fragments.ShowDataFragment;
@@ -135,23 +136,20 @@ public class ShowDataActivity extends AppCompatActivity implements View.OnClickL
                         qtde_filhos = Integer.parseInt(editGetByNumberTwins.getText().toString());
                     }
                     CollectionReference refPessoa = db.collection("exemplo");
-                    refPessoa.whereGreaterThan("salario", Double.parseDouble(editGetByFaixaSalarialBiggerThan.getText().toString()))
-                            .whereGreaterThanOrEqualTo("filhos", qtde_filhos)
-                            .get()
-                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if(task.isSuccessful()){
-                                        List<Pessoa> pessoaList = new ArrayList<>();
-                                        for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
-                                            pessoaList.add(documentSnapshot.toObject(Pessoa.class));
-                                        }
-                                        ShowDataActivity.resultado = "";
-                                        for(Pessoa p : pessoaList){
-                                            ShowDataActivity.resultado += p.toString() + "\n";
-                                        }
-                                        initFragmentShowData();
+                    refPessoa.whereGreaterThan("salario", Double.parseDouble(editGetByFaixaSalarialBiggerThan.getText().toString()));
+                    Query query = refPessoa.whereGreaterThanOrEqualTo("qtde_filhos", qtde_filhos);
+                    query.get()
+                            .addOnCompleteListener(task -> {
+                                if(task.isSuccessful()){
+                                    List<Pessoa> pessoaList = new ArrayList<>();
+                                    for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                                        pessoaList.add(documentSnapshot.toObject(Pessoa.class));
                                     }
+                                    ShowDataActivity.resultado = "";
+                                    for(Pessoa p : pessoaList){
+                                        ShowDataActivity.resultado += p.toString() + "\n";
+                                    }
+                                    initFragmentShowData();
                                 }
                             });
                 } else {
