@@ -36,6 +36,7 @@ public class ShowDataActivity extends AppCompatActivity implements View.OnClickL
     private EditText editGetByFaixaSalarial;
 
     private Button getDataByPetName;
+    private EditText editGetDataByPetName;
 
     private EditText editGetByFaixaSalarialBiggerThan;
     private EditText editGetByNumberTwins;
@@ -54,6 +55,7 @@ public class ShowDataActivity extends AppCompatActivity implements View.OnClickL
         editGetByFaixaSalarial = findViewById(R.id.editGetByFaixaSalarial);
         getDataByFaixaSalarial.setOnClickListener(this);
 
+        editGetDataByPetName = findViewById(R.id.editGetDataByPetName);
         getDataByPetName = findViewById(R.id.getDataByPetName);
         getDataByPetName.setOnClickListener(this);
 
@@ -98,6 +100,7 @@ public class ShowDataActivity extends AppCompatActivity implements View.OnClickL
                 } else {
                     Toast.makeText(ShowDataActivity.this, "Insira um nome", Toast.LENGTH_LONG).show();
                 }
+                break;
             }
             case R.id.getDataByFaixaSalarial:{
                 if(!editGetByFaixaSalarial.getText().toString().isEmpty()){
@@ -123,9 +126,33 @@ public class ShowDataActivity extends AppCompatActivity implements View.OnClickL
                 } else {
                     Toast.makeText(ShowDataActivity.this, "Insira uma faixa salarial", Toast.LENGTH_LONG).show();
                 }
+                break;
             }
             case R.id.getDataByPetName:{
-                //todo
+                if(!editGetDataByPetName.getText().toString().isEmpty()){
+                    CollectionReference refPet = db.collection("exemplo");
+                    refPet.whereArrayContains("pets", editGetDataByPetName.getText().toString())
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()){
+                                        List<Pessoa> pessoaList = new ArrayList<>();
+                                        for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                                            pessoaList.add(documentSnapshot.toObject(Pessoa.class));
+                                        }
+                                        ShowDataActivity.resultado = "";
+                                        for(Pessoa p : pessoaList){
+                                            ShowDataActivity.resultado += p.toString() + "\n";
+                                        }
+                                        initFragmentShowData();
+                                    }
+                                }
+                            });
+                } else {
+                    Toast.makeText(ShowDataActivity.this, "Insira um nome de pet", Toast.LENGTH_LONG).show();
+                }
+                break;
             }
             case R.id.getDataBySalarioEFilhos:{
                 int qtde_filhos;
@@ -155,6 +182,7 @@ public class ShowDataActivity extends AppCompatActivity implements View.OnClickL
                 } else {
                     Toast.makeText(ShowDataActivity.this, "Insira uma faixa salarial e uma quantidade de filhos", Toast.LENGTH_LONG).show();
                 }
+                break;
             }
         }
     }
@@ -162,7 +190,7 @@ public class ShowDataActivity extends AppCompatActivity implements View.OnClickL
     private void initFragmentShowData() {
         showDataFragment = new ShowDataFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.showDataContainer, showDataFragment);
+        transaction.replace(R.id.showDataContainer, showDataFragment);
         transaction.commit();
     }
 }
