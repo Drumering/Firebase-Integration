@@ -79,4 +79,9 @@ public class DashActivity extends AppCompatActivity {
         Intent intent = new Intent(DashActivity.this, ImageActivity.class);
         startActivity(intent);
     }
+
+    public void downloadActivity(View view) {
+        Intent intent = new Intent(DashActivity.this, DownloadActivity.class);
+        startActivity(intent);
+    }
 }
